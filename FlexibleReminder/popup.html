@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<style>
+  :root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --bg-color: #f9fafb;
+    --text-color: #1f2937;
+    --card-bg: #ffffff;
+    --border: #e5e7eb;
+    --success-bg: #d1fae5;
+    --success-text: #065f46;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    width: 340px; /* 少し幅を広げました */
+    margin: 0;
+    padding: 16px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 16px;
+    margin: 0 0 16px 0;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #addBtn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #addBtn:hover { background-color: var(--primary-hover); }
+
+  /* リストエリア */
+  #reminderList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* 個別のカードスタイル */
+  .reminder-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+  }
+  .reminder-card.active {
+    border-left: 4px solid var(--primary);
+  }
+  .reminder-card.inactive {
+    border-left: 4px solid #9ca3af;
+    opacity: 0.8;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .status-label {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .status-on { background-color: var(--success-bg); color: var(--success-text); }
+  .status-off { background-color: #f3f4f6; color: #6b7280; }
+
+  .next-time {
+    font-size: 11px;
+    color: #6b7280;
+  }
+
+  .input-group {
+    margin-bottom: 8px;
+  }
+  .input-group label {
+    display: block;
+    font-size: 11px;
+    color: #6b7280;
+    margin-bottom: 2px;
+  }
+
+  input[type="number"], textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 40px;
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  button.card-btn {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-size: 11px;
+    cursor: pointer;
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  button.card-btn:hover { background-color: #e5e7eb; }
+
+  button.btn-delete {
+    color: var(--danger);
+    background-color: #fff1f2;
+  }
+  button.btn-delete:hover { background-color: #fee2e2; }
+
+  button.btn-toggle {
+    background-color: var(--primary);
+    color: white;
+  }
+  button.btn-toggle.is-active {
+    background-color: #9ca3af; /* 停止ボタンの色 */
+  }
+
+  .empty-msg {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>
+    My Reminders
+    <button id="addBtn">+ 追加</button>
+  </h1>
+
+  <div id="reminderList">
+    <!-- JSでここにカードが追加されます -->
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
